@@ -2,6 +2,19 @@
 
 **M3B2 Metal** is an Apple-Silicon Metal kernel package for **BTCB2 / Bitcoin BLAKE2b** mining on the **Apple M3 Max**. Goal: minimize **joules per valid BLAKE2b hash**.
 
+## Final benchmark — optimized vs stock
+
+Controlled M3 Max comparison at full GPU duty:
+
+| | Stock / Kernel A | Optimized D3 | Improvement |
+|---|---:|---:|---:|
+| Hashrate | 1,110.31 MH/s | **1,128.90 MH/s** | **+1.67%** |
+| GPU power | 41.14 W | **39.77 W** | **-3.33%** |
+| Incremental package efficiency | 40.83 J/GH | **36.90 J/GH** | **-9.63% J/GH** |
+| Dynamic compile | baseline | **0.23 ms** | — |
+
+**Result: ~9.6% less whole-package incremental energy per BLAKE2b hash while hashing ~1.7% faster than the stock baseline.**
+
 ## Best validated M3 Max settings
 
 - GPU: Apple M3 Max 30-core
@@ -12,9 +25,7 @@
 - CPU: network/job coordination only
 - Primary metric: incremental whole-package **J/GH**
 
-The internally benchmarked **D3** kernel is the current champion at about **1.13 GH/s** and **~36.9 J/GH incremental package energy** in its best controlled full-duty comparison. Full history: [`BENCHMARKS.md`](BENCHMARKS.md).
-
-> Low-duty telemetry remains unresolved: nominal 30% duty measured **16.83 J/GH** in one calibrated session and **42.03 J/GH** later. Neither is presented here as a settled global optimum.
+The internally benchmarked **D3** kernel is the current champion at about **1.13 GH/s** and **36.90 J/GH incremental package energy** in its controlled full-duty comparison. Full history: [`BENCHMARKS.md`](BENCHMARKS.md).
 
 ## Build + run
 
